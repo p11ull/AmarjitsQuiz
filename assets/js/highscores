@@ -1,0 +1,21 @@
+document.addEventListener('DOMContentLoaded', function() {
+  const highscoresList = document.getElementById('highscores');
+  const highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+
+  // Sort highscores in descending order based on the score
+  highscores.sort((a, b) => b.score - a.score);
+
+  // Iterate through highscores and create list items to display
+  highscores.forEach(score index) => {
+    const li = document.createElement('li');
+    li.textContent = `${index + 1}. ${score.initials}: ${score.score}`;
+    highscoresList.appendChild(li);
+  });
+
+  // Clear highscores button functionality
+  const clearButton = document.getElementById('clear');
+  clearButton.addEventListener('click', function() {
+    localStorage.removeItem('highscores');
+    highscoresList.innerHTML = ''; // Clear the displayed high scores
+  });
+});
