@@ -42,6 +42,9 @@ const questions = [
   // Landing page goes away
   // Timer starts
   // The first question appears (with its answers)
+let currentQuestionIndex = 0;
+let timeLeft = 60; // Initial time for the quiz
+let timerInterval;
 
 // For each question:
   // User clicks an answer
