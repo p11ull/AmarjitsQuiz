@@ -1,8 +1,17 @@
-// Set of questions --> array of objects
-// Each question needs the following:
-  // Question text
-  // Set of answers
-  // Which answer is correct
+const startButton = document.getElementById('start');
+const questionsDiv = document.getElementById('questions');
+const choicesDiv = document.getElementById('choices');
+const feedbackDiv = document.getElementById('feedback');
+const endScreenDiv = document.getElementById('end-screen');
+const finalScoreSpan = document.getElementById('final-score');
+const initialsInput = document.getElementById('initials');
+const submitButton = document.getElementById('submit');
+const timerSpan = document.getElementById('time');
+
+let currentQuestionIndex = 0;
+let timeLeft = 60; // Initial time for the quiz
+let timerInterval;
+
 // Array of questions and their choices
 const questions = [
   {
@@ -34,25 +43,6 @@ const questions = [
   // { question: '...', choices: ['...', '...', '...'], answer: '...' }
 ];
 
-// Landing page:
-  // Explanation of the quiz
-  // Start button
-
-// Click the start button:
-  // Landing page goes away
-  // Timer starts
-  // The first question appears (with its answers)
-let currentQuestionIndex = 0;
-let timeLeft = 60; // Initial time for the quiz
-let timerInterval;
-
-// For each question:
-  // User clicks an answer
-  // Their choice is compared to the correct answer as stored in the question's object
-  // If correct, tell them
-  // If incorrect, tell them AND subtract time from the timer
-  // Optional: play a sound for correct or incorrect
-  // Either way, the question disappears after a few seconds and the next question appears
 function startQuiz() {
   startButton.style.display = 'none';
   questionsDiv.classList.remove('hide');
@@ -109,11 +99,6 @@ function handleAnswerClick(event) {
   }
 }
 
-// After the last question:
-  // Timer stops
-  // Question disappears
-  // Form appears for user to enter their initials
-  // Display their score
 function endQuiz() {
   clearInterval(timerInterval);
 
@@ -123,17 +108,14 @@ function endQuiz() {
   finalScoreSpan.textContent = timeLeft;
 }
 
-// User submits form
-  // Initials and score get stored in local storage
-  // User is taken to the high scores page
-  // High scores are listed, sorted highest to lowest
-  // User has option to take the quiz again
 submitButton.addEventListener('click', function() {
   const initials = initialsInput.value.trim();
 
   if (initials !== '') {
-    // Save highscore logic here (store initials and score)
-    // Example: localStorage.setItem('highscore', JSON.stringify({ initials, score: timeLeft }));
+    const highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+    const newScore = { initials, score: timeLeft };
+    highscores.push(newScore);
+    localStorage.setItem('highscores', JSON.stringify(highscores));
 
     // Redirect to highscores.html or show highscores
     window.location.href = 'highscores.html';
