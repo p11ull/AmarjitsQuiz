@@ -3,6 +3,36 @@
   // Question text
   // Set of answers
   // Which answer is correct
+// Array of questions and their choices
+const questions = [
+  {
+    question: 'Which former intern did Bill Clinton have an affair with?',
+    choices: ['Monica Lewinski', 'Hillary Clinton', 'Stormy Daniels'],
+    answer: 'Monica Lewinski'
+  },
+  {
+    question: 'Which Broadway musical tells the story of one of the Presidents and founding fathers?',
+    choices: ['Assassins', 'Miss Saigon', 'Hamilton'],
+    answer: 'Hamilton'
+  },
+  {
+    question: 'Which one of the following presidents was not a founding father?',
+    choices: ['John Adams', 'Andrew Jackson', 'Thomas Jefferson'],
+    answer: 'Andrew Jackson'
+  },
+  {
+    question: 'Which president is on the $50 bill?',
+    choices: ['Ulysses S. Grant', 'Benjamin Franklin', 'Abraham Lincoln'],
+    answer: 'Ulysses S. Grant'
+  },
+  {
+    question: 'When did the White House first website go live?',
+    choices: ['1984', '1994', '2004'],
+    answer: '1994'
+  },
+    // Add more questions in a similar format
+  // { question: '...', choices: ['...', '...', '...'], answer: '...' }
+];
 
 // Landing page:
   // Explanation of the quiz
