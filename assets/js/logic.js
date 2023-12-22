@@ -53,6 +53,61 @@ let timerInterval;
   // If incorrect, tell them AND subtract time from the timer
   // Optional: play a sound for correct or incorrect
   // Either way, the question disappears after a few seconds and the next question appears
+function startQuiz() {
+  startButton.style.display = 'none';
+  questionsDiv.classList.remove('hide');
+
+  // Start the timer
+  startTimer();
+
+  showQuestion();
+}
+
+function startTimer() {
+  timerInterval = setInterval(function() {
+    timeLeft--;
+    timerSpan.textContent = timeLeft;
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      endQuiz();
+    }
+  }, 1000);
+}
+
+function showQuestion() {
+  const currentQuestion = questions[currentQuestionIndex];
+
+  document.getElementById('question-title').textContent = currentQuestion.question;
+  choicesDiv.innerHTML = '';
+
+  currentQuestion.choices.forEach(choice => {
+    const choiceButton = document.createElement('button');
+    choiceButton.textContent = choice;
+    choiceButton.addEventListener('click', handleAnswerClick);
+    choicesDiv.appendChild(choiceButton);
+  });
+}
+
+function handleAnswerClick(event) {
+  const selectedAnswer = event.target.textContent;
+  const currentQuestion = questions[currentQuestionIndex];
+
+  if (selectedAnswer === currentQuestion.answer) {
+    feedbackDiv.textContent = 'Correct!';
+  } else {
+    feedbackDiv.textContent = 'Incorrect!';
+    timeLeft -= 10; // Penalty for incorrect answer
+  }
+
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex < questions.length) {
+    showQuestion();
+  } else {
+    endQuiz();
+  }
+}
 
 // After the last question:
   // Timer stops
