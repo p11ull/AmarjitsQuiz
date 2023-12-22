@@ -128,3 +128,16 @@ function endQuiz() {
   // User is taken to the high scores page
   // High scores are listed, sorted highest to lowest
   // User has option to take the quiz again
+submitButton.addEventListener('click', function() {
+  const initials = initialsInput.value.trim();
+
+  if (initials !== '') {
+    // Save highscore logic here (store initials and score)
+    // Example: localStorage.setItem('highscore', JSON.stringify({ initials, score: timeLeft }));
+
+    // Redirect to highscores.html or show highscores
+    window.location.href = 'highscores.html';
+  }
+});
+
+startButton.addEventListener('click', startQuiz);
