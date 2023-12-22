@@ -114,6 +114,14 @@ function handleAnswerClick(event) {
   // Question disappears
   // Form appears for user to enter their initials
   // Display their score
+function endQuiz() {
+  clearInterval(timerInterval);
+
+  questionsDiv.classList.add('hide');
+  endScreenDiv.classList.remove('hide');
+
+  finalScoreSpan.textContent = timeLeft;
+}
 
 // User submits form
   // Initials and score get stored in local storage
